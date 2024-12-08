@@ -1,11 +1,11 @@
 import { Outlet } from "react-router";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
+import { AceternityNavBar } from "./AceternityNavBar";
 
 function AppLayout() {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      <AceternityNavBar />
 
       <main className="flex-grow container mx-auto py-8 px-4">
         <Outlet />
