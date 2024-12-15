@@ -3,6 +3,6 @@ export interface Room {
     name: string
     capacity: number
     pricePerNight: number,
-    desc:string,
+    description:string,
     imageUrls: string[]
 }
