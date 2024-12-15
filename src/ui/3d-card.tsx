@@ -1,5 +1,4 @@
 import { cn } from "../lib/utils";
-import { Image } from "lucide-react";
 import React, {
   createContext,
   useState,
