@@ -1,7 +1,15 @@
-import { CardBody, CardContainer, CardItem } from "../../ui/3d-card";
+import { CardBody, CardContainer, CardItem } from "../../components/ui/3d-card";
 import { IoPeopleSharp } from "react-icons/io5";
 import { Room } from "./types";
 import { MdNightlight } from "react-icons/md";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@radix-ui/react-dialog";
+import { DialogHeader } from "../../components/ui/dialog";
 
 interface RoomCardProps {
   room: Room;
@@ -49,13 +57,33 @@ export function RoomCard({ room }: RoomCardProps) {
               {`${room.capacity}`}
             </div>
           </CardItem>
-          <CardItem
-            translateZ={20}
-            as="button"
-            className="px-4 py-2 rounded-xl bg-appBrown dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            Reserve
-          </CardItem>
+          <Dialog>
+            <DialogTrigger>
+              <a
+                className="
+                px-4
+                py-2
+                rounded-xl
+                bg-appBrown
+                dark:bg-white
+                dark:text-black
+                text-white
+                text-xs
+                font-bold"
+              >
+                Reserve
+              </a>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                <DialogDescription>
+                  This action cannot be undone. This will permanently delete
+                  your account and remove your data from our servers.
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
       </CardBody>
     </CardContainer>
