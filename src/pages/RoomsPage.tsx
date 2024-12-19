@@ -1,5 +1,5 @@
 import AllRoomCards from "../features/Rooms/AllRoomCards";
-import { Header } from "../ui/KitwindHeader";
+import { Header } from "../components/ui/KitwindHeader";
 
 const RoomsPage = () => {
   return (
