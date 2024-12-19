@@ -1,7 +1,6 @@
-import "./App.css";
 
 import { BrowserRouter, Routes, Route } from "react-router";
-import AppLayout from "./ui/AppLayout";
+import AppLayout from "./components/ui/AppLayout";
 import RoomsPage from "./pages/RoomsPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
