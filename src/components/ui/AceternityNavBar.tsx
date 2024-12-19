@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./navbarItems";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 import fonlogo from "../public/images/fonlogo.png";
 
 export function AceternityNavBar() {

@@ -1,4 +1,4 @@
-import logo from "../public/images/fonlogo.png";
+import logo from "../../public/images/fonlogo.png";
 
 export const Footer = () => {
   return (
