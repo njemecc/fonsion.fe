@@ -1,5 +1,5 @@
 
-import { Room } from "../features/Rooms/types";
+import { Room } from "../features/Rooms/roomTypes";
 import axios from "axios"
 import { ErrorOrResponse } from "../types/globalTypes";
 import { backendUrl } from "./backendUrl";
