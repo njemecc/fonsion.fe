@@ -1,6 +1,6 @@
 import { CardBody, CardContainer, CardItem } from "../../components/ui/3d-card";
 import { IoPeopleSharp } from "react-icons/io5";
-import { Room } from "./types";
+import { Room } from "./roomTypes";
 import { MdNightlight } from "react-icons/md";
 import {
   Dialog,
@@ -8,8 +8,9 @@ import {
   DialogDescription,
   DialogTitle,
   DialogTrigger,
-} from "@radix-ui/react-dialog";
+} from "../../components/ui/dialog";
 import { DialogHeader } from "../../components/ui/dialog";
+import CreateReservationForm from "../Reservations/CreateReservationForm";
 
 interface RoomCardProps {
   room: Room;
@@ -76,12 +77,17 @@ export function RoomCard({ room }: RoomCardProps) {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                <DialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
-                </DialogDescription>
+                <DialogTitle>Reserve {room.name} Room</DialogTitle>
+                <DialogDescription>{room.description}</DialogDescription>
               </DialogHeader>
+              <img
+                src={room.imageUrls[0]}
+                height="1000"
+                width="1000"
+                className="h-60 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                alt="thumbnail"
+              />
+              <CreateReservationForm room={room} />
             </DialogContent>
           </Dialog>
         </div>

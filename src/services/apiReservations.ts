@@ -1,13 +1,13 @@
 
-import { Room } from "../features/Rooms/roomTypes";
-import axios from "axios"
+import axios from "axios";
 import { ErrorOrResponse } from "../types/globalTypes";
 import { backendUrl } from "./backendUrl";
+import { CreateReservationRequestDto } from "../features/Reservations/reservationTypes";
 
 
-export async function getAllRooms():Promise<Room[]>{
+export async function createReservationApi(request:CreateReservationRequestDto):Promise<string>{
 
-    const response = await axios.get<ErrorOrResponse<Room[]>>(`${backendUrl}/api/room`)
+    const response = await axios.post<ErrorOrResponse<string>>(`${backendUrl}/api/reservation`,request)
     
 
     if (response.data.isError) {
