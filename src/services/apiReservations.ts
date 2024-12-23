@@ -23,6 +23,23 @@ export async function createReservationApi(request:CreateReservationRequestDto):
       throw new Error("Unexpected response format");
     };
 
+    export async function getReservedDatesApi (roomId:string) :Promise<Array<string>>{
+
+        const response = await axios.get<ErrorOrResponse<Array<string>>>(`${backendUrl}/api/reservation/occupied-dates/${roomId}`)
+
+        if (response.data.isError) {
+            const errorMessage =
+              response.data.firstError?.description || "Unknown error occurred";
+            throw new Error(errorMessage);
+          }
+      
+          if (response.data.value) {
+            return response.data.value;
+          }
+      
+          throw new Error("Unexpected response format");
+    }
+
 
 
 
