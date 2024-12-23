@@ -26,6 +26,7 @@ import { Room } from "../Rooms/roomTypes";
 import { useCreateReservation } from "./useCreateReservation";
 import { useEffect, useState } from "react";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { useGetReservedDates } from "./useGetReservedDates";
 
 interface CreateReservationFormProps {
   room: Room;
@@ -42,6 +43,10 @@ const CreateReservationForm = ({ room }: CreateReservationFormProps) => {
 
   const fromDate = form.watch("fromDate");
   const toDate = form.watch("toDate");
+
+  const { reservedDates } = useGetReservedDates(room.id);
+
+  const disabledDates = reservedDates?.map((date) => new Date(date));
 
   useEffect(() => {
     if (fromDate && toDate) {
@@ -70,104 +75,126 @@ const CreateReservationForm = ({ room }: CreateReservationFormProps) => {
           control={form.control}
           name="fromDate"
           render={({ field }) => (
-            <FormField
-              control={form.control}
-              name="fromDate"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>From</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-[240px] pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                        >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent
-                      className="bg-white border border-gray-200 shadow-md rounded-lg p-0 w-auto"
-                      align="start"
+            <FormItem className="flex flex-col">
+              <FormLabel>From</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[240px] pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground"
+                      )}
                     >
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) =>
-                          date > new Date() || date < new Date("1900-01-01")
-                        }
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="bg-white border border-gray-200 shadow-md rounded-lg p-0 w-auto"
+                  align="start"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    disabled={(date) => {
+                      const fromDateWithTimeRemoved = new Date(
+                        fromDate || new Date()
+                      );
+                      fromDateWithTimeRemoved.setHours(0, 0, 0, 0);
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                      const isBeforeFromDate = date < fromDateWithTimeRemoved;
+
+                      const isReserved = disabledDates!.some(
+                        (disabledDate) =>
+                          date.toISOString().split("T")[0] ===
+                          disabledDate.toISOString().split("T")[0]
+                      );
+
+                      return isBeforeFromDate || isReserved;
+                    }}
+                  />
+                </PopoverContent>
+              </Popover>
+
+              <FormMessage />
+            </FormItem>
           )}
-        ></FormField>
+        />
         <FormField
           control={form.control}
           name="toDate"
           render={({ field }) => (
-            <FormField
-              control={form.control}
-              name="toDate"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>To</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-[240px] pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                        >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent
-                      className="bg-white border border-gray-200 shadow-md rounded-lg p-0 w-auto"
-                      align="start"
+            <FormItem className="flex flex-col">
+              <FormLabel>To</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant={"outline"}
+                      className={cn(
+                        "w-[240px] pl-3 text-left font-normal",
+                        !field.value && "text-muted-foreground"
+                      )}
                     >
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) =>
-                          date > new Date() || date < new Date("1900-01-01")
-                        }
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
+                      {field.value ? (
+                        format(field.value, "PPP")
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                      <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent
+                  className="bg-white border border-gray-200 shadow-md rounded-lg p-0 w-auto"
+                  align="start"
+                >
+                  <Calendar
+                    mode="single"
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    disabled={(date) => {
+                      const fromDateWithTimeRemoved = new Date(
+                        fromDate || new Date()
+                      );
+                      fromDateWithTimeRemoved.setHours(0, 0, 0, 0);
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                      const isBeforeFromDate = date < fromDateWithTimeRemoved;
+
+                      const isReserved = disabledDates?.some(
+                        (disabledDate) =>
+                          date.toISOString().split("T")[0] ===
+                          disabledDate.toISOString().split("T")[0]
+                      );
+
+                      const fromDateNextDay = new Date(fromDateWithTimeRemoved);
+                      fromDateNextDay.setDate(
+                        fromDateWithTimeRemoved.getDate() + 1
+                      );
+
+                      const isAtLeastNextDay = date >= fromDateNextDay;
+
+                      return (
+                        isBeforeFromDate || isReserved || !isAtLeastNextDay
+                      );
+                    }}
+                  />
+                </PopoverContent>
+              </Popover>
+
+              <FormMessage />
+            </FormItem>
           )}
-        ></FormField>
+        />
+
         <FormField
           control={form.control}
           name="guestCompanions"
