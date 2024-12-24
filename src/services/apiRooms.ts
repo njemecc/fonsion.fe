@@ -5,9 +5,9 @@ import { ErrorOrResponse } from "../types/globalTypes";
 import { backendUrl } from "./backendUrl";
 
 
-export async function getAllRooms():Promise<Room[]>{
+export async function getAllRooms(fromDate:string | null,toDate:string | null):Promise<Room[]>{
 
-    const response = await axios.get<ErrorOrResponse<Room[]>>(`${backendUrl}/api/room`)
+    const response = await axios.get<ErrorOrResponse<Room[]>>(`${backendUrl}/api/room/${fromDate}/${toDate}`)
     
 
     if (response.data.isError) {
