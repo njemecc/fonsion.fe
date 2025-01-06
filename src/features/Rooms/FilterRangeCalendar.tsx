@@ -57,7 +57,7 @@ const FilterRangeCalendar = () => {
   };
 
   return (
-    <div className="p-4 bg-white rounded-md shadow">
+    <div className="p-4 bg-white rounded-md ">
       <Calendar
         mode="single"
         selected={selectedRange.fromDate || undefined}
