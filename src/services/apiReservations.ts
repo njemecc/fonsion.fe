@@ -2,7 +2,7 @@
 import axios from "axios";
 import { ErrorOrResponse } from "../types/globalTypes";
 import { backendUrl } from "./backendUrl";
-import { CreateReservationRequestDto } from "../features/Reservations/reservationTypes";
+import { CreateReservationRequestDto, GetReservationByUserIdResponse } from "../features/Reservations/reservationTypes";
 
 
 export async function createReservationApi(request:CreateReservationRequestDto):Promise<string>{
@@ -41,5 +41,18 @@ export async function createReservationApi(request:CreateReservationRequestDto):
     }
 
 
-
+    export async function getReservationsByUserIdApi(userId: string): Promise<Array<GetReservationByUserIdResponse>> {
+      const response = await axios.get<ErrorOrResponse<Array<GetReservationByUserIdResponse>>>(`${backendUrl}/api/reservation/getByUser/${userId}`);
+    
+      if (response.data.isError) {
+        const errorMessage = response.data.firstError?.description || "Unknown error occurred";
+        throw new Error(errorMessage);
+      }
+    
+      if (response.data.value) {
+        return response.data.value;
+      }
+    
+      throw new Error("Unexpected response format");
+    }
 
