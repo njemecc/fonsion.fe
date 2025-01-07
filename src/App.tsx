@@ -4,6 +4,7 @@ import RoomsPage from "./pages/RoomsPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import ReservationsPage from "./pages/ReservationsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route path="/" element={<RoomsPage />}></Route>
+            <Route path="/reservations" element={<ReservationsPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

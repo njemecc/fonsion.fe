@@ -17,3 +17,8 @@ export interface ErrorOrResponse<T> {
       metadata: any | null;
     } | null;
   }
+
+  export interface PaginatedResult<T>{
+    items: Array<T>,
+    totalCount :number
+}
