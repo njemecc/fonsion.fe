@@ -13,3 +13,11 @@ export interface CreateReservationRequestDto {
     guestCompanions?:Array<GuestCompanion>
     promoCodeId? : string
 }
+
+export interface GetReservationByUserIdResponse {
+    roomName:string,
+    images:Array<string>,
+    fromDate:Date,
+    toDate:Date,
+    totalPrice:number
+}
