@@ -1,24 +1,19 @@
-import { Payment, columns } from "../Reservations/ReservationsTable/columns";
+import { columns } from "../Reservations/ReservationsTable/columns";
 import { DataTable } from "../Reservations/ReservationsTable/data-table";
-
-function getData(): Payment[] {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-  ];
-}
+import { useGetReservationByUserId } from "./useGetReservationsByUserId";
 
 export default function AllReservations() {
-  const data = getData();
+  const { reservations, isLoading } = useGetReservationByUserId(
+    "6c96ade0-6e3c-4de3-bd0f-6c09b863a3c4"
+  );
 
   return (
     <div className="container mx-auto mt-36 py-10">
-      <DataTable columns={columns} data={data} />
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <DataTable columns={columns} data={reservations!} />
+      )}
     </div>
   );
 }
