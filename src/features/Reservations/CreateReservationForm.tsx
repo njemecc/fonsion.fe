@@ -23,10 +23,10 @@ import {
   PopoverTrigger,
 } from "@radix-ui/react-popover";
 import { Room } from "../Rooms/roomTypes";
-import { useCreateReservation } from "./useCreateReservation";
+import { useCreateReservation } from "../Reservations/hooks/useCreateReservation";
 import { useEffect, useState } from "react";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useGetReservedDates } from "./useGetReservedDates";
+import { useGetReservedDates } from "../Reservations/hooks/useGetReservedDates";
 
 interface CreateReservationFormProps {
   room: Room;
