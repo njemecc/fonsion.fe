@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 
-import { createReservationApi } from "../../services/apiReservations";
+import { createReservationApi } from "../../../services/apiReservations";
 
 export function useCreateReservation() {
   const queryClient = useQueryClient();

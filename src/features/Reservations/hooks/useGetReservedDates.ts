@@ -1,4 +1,4 @@
-import { getReservedDatesApi } from "../../services/apiReservations"
+import { getReservedDatesApi } from "../../../services/apiReservations"
 import { useQuery } from "@tanstack/react-query"
 
 
