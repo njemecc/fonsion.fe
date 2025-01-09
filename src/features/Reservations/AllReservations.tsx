@@ -1,6 +1,6 @@
 import { columns } from "../Reservations/ReservationsTable/columns";
 import { DataTable } from "../Reservations/ReservationsTable/data-table";
-import { useGetReservationByUserId } from "./useGetReservationsByUserId";
+import { useGetReservationByUserId } from "./hooks/useGetReservationsByUserId";
 
 export default function AllReservations() {
   const { reservations, isLoading } = useGetReservationByUserId(

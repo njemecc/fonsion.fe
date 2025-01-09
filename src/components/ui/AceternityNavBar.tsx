@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "./navbarItems";
 import { cn } from "../../lib/utils";
-import fonlogo from "../public/images/fonlogo.png";
+import fonLogo from "../../public/images/fonlogo.png";
 import { Link } from "react-router";
 
 export function AceternityNavBar() {
@@ -19,11 +19,11 @@ function Navbar({ className }: { className?: string }) {
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu setActive={setActive}>
-        {/* <div className="flex flex-col space-y-4 text-sm mr-10 items-center">
+        <div className="flex flex-col space-y-4 text-sm mr-10 items-center">
           <a href="/" className="no-underline">
-            <img src={fonlogo} alt="logo" width={35} />
+            <img src={fonLogo} alt="logo" width={35} />
           </a>
-        </div> */}
+        </div>
         <Link to="/">
           <MenuItem setActive={setActive} active={active} item="Rooms">
             <div className="flex flex-col space-y-4 text-sm">

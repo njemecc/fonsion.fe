@@ -1,7 +1,7 @@
 import FilterRangeCalendar from "./FilterRangeCalendar";
 import { RoomCard } from "./RoomCard";
 import RoomsPagination from "./RoomsPagination";
-import { useGetAllRooms } from "./useGetAllRooms";
+import { useGetAllRooms } from "../Rooms/hooks/useGetAllRooms";
 
 const AllRoomCards = () => {
   const { rooms, isLoading } = useGetAllRooms();

@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router"
-import { getAllRooms } from "../../services/apiRooms"
+import { getAllRooms } from "../../../services/apiRooms"
 import { useQuery } from "@tanstack/react-query"
-import { PAGESIZE } from "./constants";
+import { PAGESIZE } from ".././constants";
 
 export function useGetAllRooms(){
 
