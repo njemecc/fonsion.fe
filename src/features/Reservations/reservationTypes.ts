@@ -19,5 +19,8 @@ export interface GetReservationByUserIdResponse {
     images:Array<string>,
     fromDate:Date,
     toDate:Date,
-    totalPrice:number
+    totalPrice:number,
+    reservationId: string,
+    status: number
+
 }
