@@ -3,6 +3,12 @@ import { HoveredLink, Menu, MenuItem, ProductItem } from "./navbarItems";
 import { cn } from "../../lib/utils";
 import fonLogo from "../../public/images/fonlogo.png";
 import { Link } from "react-router";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 
 export function AceternityNavBar() {
   return (
@@ -80,6 +86,14 @@ function Navbar({ className }: { className?: string }) {
             <HoveredLink href="/enterprise">Enterprise</HoveredLink>
           </div>
         </MenuItem>
+        <div className="flex flex-col space-y-4 text-md mr-10 items-center">
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
       </Menu>
     </div>
   );
