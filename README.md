@@ -47,10 +47,10 @@ Create a .env file and configure necessary API URLs.
 # Rooms🏨
 ![rooms](https://github.com/user-attachments/assets/5a069119-b496-4ce6-b344-7d9c4b622d14)
 
-# Make a reservation 📝
+# My reservations 📝
 ![reservations](https://github.com/user-attachments/assets/75f26b71-123d-494c-95c5-ea3c1f812317)
 
-# My reservations 📝
+# Make a reservation 📝
 ![reservation](https://github.com/user-attachments/assets/416ab999-ebf0-4a29-88fc-b2b0a6607585)
 
 
