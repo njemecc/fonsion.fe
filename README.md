@@ -25,7 +25,7 @@ To run the frontend locally:
    ```sh
    git clone https://github.com/njemecc/fonsion.fe.git
    cd fonsion.fe
-```
+   ```
 
 2. **Install dependencies**
 ```sh
@@ -38,4 +38,12 @@ npm run dev
 ```
 4. **Enviroment variables**
 Create a .env file and configure necessary API URLs.
+
+##📷 Screenshots
+
+![header](https://github.com/user-attachments/assets/83d9f1e2-2609-44ca-96a8-39762bcec961)
+![rooms](https://github.com/user-attachments/assets/5a069119-b496-4ce6-b344-7d9c4b622d14)
+![reservations](https://github.com/user-attachments/assets/75f26b71-123d-494c-95c5-ea3c1f812317)
+![reservation](https://github.com/user-attachments/assets/416ab999-ebf0-4a29-88fc-b2b0a6607585)
+
 
