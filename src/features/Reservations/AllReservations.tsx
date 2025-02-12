@@ -1,10 +1,14 @@
+import { useUser } from "@clerk/clerk-react";
 import { columns } from "../Reservations/ReservationsTable/columns";
 import { DataTable } from "../Reservations/ReservationsTable/data-table";
 import { useGetReservationByUserId } from "./hooks/useGetReservationsByUserId";
 
 export default function AllReservations() {
+  const { user } = useUser();
+
   const { reservations, isLoading } = useGetReservationByUserId(
-    "6c96ade0-6e3c-4de3-bd0f-6c09b863a3c4"
+    //@ts-ignore
+    user?.publicMetadata.userId
   );
 
   return (

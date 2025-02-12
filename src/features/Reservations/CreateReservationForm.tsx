@@ -28,6 +28,8 @@ import { useEffect, useState } from "react";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useGetReservedDates } from "../Reservations/hooks/useGetReservedDates";
 
+import { useUser } from "@clerk/clerk-react";
+
 interface CreateReservationFormProps {
   room: Room;
 }
@@ -36,6 +38,8 @@ const CreateReservationForm = ({ room }: CreateReservationFormProps) => {
   const form = useForm<z.infer<typeof createReservationFormValidationScheme>>({
     resolver: zodResolver(createReservationFormValidationScheme),
   });
+
+  const { user } = useUser();
 
   const { createReservation, isCreating } = useCreateReservation();
 
@@ -61,8 +65,10 @@ const CreateReservationForm = ({ room }: CreateReservationFormProps) => {
   const onSubmit = (
     values: z.infer<typeof createReservationFormValidationScheme>
   ) => {
+    console.log(user);
     createReservation({
-      userId: "6c96ade0-6e3c-4de3-bd0f-6c09b863a3c4",
+      //@ts-ignore
+      userId: user!.publicMetadata!.userId,
       roomId: room.id,
       ...values,
     });
